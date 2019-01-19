@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在小程序开发中，资源加载会影响界面绘制；假如网络状态不够好，很可能会引起初始化界面为空，直到图片加载完成才显示整个界面。 我们知道，小程序代码及资源本身的限制为2MB，缓存限制为10MB，因此可以考虑将列表项所需的大量图片通过更改像素的方式大大减小其大小。例如一张2MB的图片可以缩小至2KB。 那么如何批量更改大量图片的像素又不改变其比例呢？作为一个程序员当然要用代码来实现，在此介绍一下如何通过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/01/19/Java——更改图片像素/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在小程序开发中，资源加载会影响界面绘制；假如网络状态不够好，很可能会引起初始化界面为空，直到图片加载完成才显示整个界面。 我们知道，小程序代码及资源本身的限制为2MB，缓存限制为10MB，因此可以考虑将列表项所需的大量图片通过更改像素的方式大大减小其大小。例如一张2MB的图片可以缩小至2KB。 那么如何批量更改大量图片的像素又不改变其比例呢？作为一个程序员当然要用代码来实现，在此介绍一下如何通过">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/2dLwjuC.png">
+<meta property="og:image" content="https://i.imgur.com/9hJTGc9.png">
+<meta property="og:updated_time" content="2018-05-23T13:54:42.298Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="在小程序开发中，资源加载会影响界面绘制；假如网络状态不够好，很可能会引起初始化界面为空，直到图片加载完成才显示整个界面。 我们知道，小程序代码及资源本身的限制为2MB，缓存限制为10MB，因此可以考虑将列表项所需的大量图片通过更改像素的方式大大减小其大小。例如一张2MB的图片可以缩小至2KB。 那么如何批量更改大量图片的像素又不改变其比例呢？作为一个程序员当然要用代码来实现，在此介绍一下如何通过">
+<meta name="twitter:image" content="https://i.imgur.com/2dLwjuC.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java——更改图片像素" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/19/Java——更改图片像素/" class="article-date">
+  <time datetime="2019-01-19T06:02:29.177Z" itemprop="datePublished">2019-01-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在小程序开发中，资源加载会影响界面绘制；假如网络状态不够好，<br>很可能会引起初始化界面为空，直到图片加载完成才显示整个界面。</p>
+<p>我们知道，小程序代码及资源本身的限制为2MB，缓存限制为10MB，<br>因此可以考虑将列表项所需的大量图片通过更改像素的方式大大减小其大小。<br>例如一张2MB的图片可以缩小至2KB。</p>
+<p>那么如何批量更改大量图片的像素又不改变其比例呢？<br>作为一个程序员当然要用代码来实现，在此介绍一下如何通过Java更改图片像素</p>
+</blockquote>
+<p>###题外话<br>在Windows系统获取的文件路径由于其中的<code>\</code>往往不能直接在代码中使用，<br>因此介绍一下如何替换字符串中的<code>\</code>（反斜杠）：<br>对String对象使用<code>.replaceAll(&quot;\\\\&quot;,&quot;/&quot;)</code>即可将所有<code>\</code>替换为<code>/</code>，进而方便文件的使用。</p>
+<h2 id="·-获取图片像素"><a href="#·-获取图片像素" class="headerlink" title="· 获取图片像素"></a>· 获取图片像素</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.awt.image.BufferedImage;  </span><br><span class="line"><span class="keyword">import</span> java.io.File;  </span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> javax.imageio.ImageIO;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageResizer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 功能：获取图片像素</span></span><br><span class="line"><span class="comment">     * * <span class="doctag">@param</span> filePath 图片路径</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getPixel</span><span class="params">(String filePath)</span></span>&#123;</span><br><span class="line">    	File file = <span class="keyword">new</span> File(filePath);</span><br><span class="line">    	BufferedImage bi = <span class="keyword">null</span>;</span><br><span class="line">    	<span class="keyword">try</span> &#123;</span><br><span class="line">    	bi = ImageIO.read(file);</span><br><span class="line">    	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    	e.printStackTrace();</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">int</span> width = bi.getWidth(); <span class="comment">// 像素</span></span><br><span class="line">    	<span class="keyword">int</span> height = bi.getHeight(); <span class="comment">// 像素</span></span><br><span class="line">    	System.out.println(<span class="string">"width="</span> + width + <span class="string">",height="</span> + height + <span class="string">"."</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String []args)</span></span>&#123;</span><br><span class="line"> 		getPixel(<span class="string">"G:/蝴蝶识别/压缩/首图/Acraea terpsicore0.jpg"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line">**结果：**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; width=<span class="number">450</span>,height=<span class="number">470</span>.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## · 更改图片像素</span><br><span class="line"></span><br><span class="line">**按图片的原比例进行修改：**</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> srcPath  源图片路径</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> desPath  修改大小后图片路径 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> scaleSize 图片的修改比例，目标宽度</span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">resizeImage</span><span class="params">(String srcPath, String desPath,<span class="keyword">int</span> scaleSize)</span> <span class="keyword">throws</span> IOException </span>&#123;  </span><br><span class="line">  </span><br><span class="line">        File srcFile = <span class="keyword">new</span> File(srcPath);  </span><br><span class="line">        Image srcImg = ImageIO.read(srcFile);  </span><br><span class="line">        BufferedImage bi = <span class="keyword">null</span>;</span><br><span class="line">    	<span class="keyword">try</span> &#123;</span><br><span class="line">    	bi = ImageIO.read(srcFile);</span><br><span class="line">    	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    	e.printStackTrace();</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">float</span> width = bi.getWidth(); <span class="comment">// 像素</span></span><br><span class="line">    	<span class="keyword">float</span> height = bi.getHeight(); <span class="comment">// 像素</span></span><br><span class="line">    	<span class="keyword">float</span> scale=width/scaleSize;</span><br><span class="line">        BufferedImage buffImg = <span class="keyword">null</span>;  </span><br><span class="line">        buffImg = <span class="keyword">new</span> BufferedImage(scaleSize, (<span class="keyword">int</span>)(height/scale), BufferedImage.TYPE_INT_RGB); </span><br><span class="line">		<span class="comment">//使用TYPE_INT_RGB修改的图片会变色 </span></span><br><span class="line">        buffImg.getGraphics().drawImage(  </span><br><span class="line">                srcImg.getScaledInstance(scaleSize, (<span class="keyword">int</span>)(height/scale), Image.SCALE_SMOOTH), <span class="number">0</span>,  </span><br><span class="line">                <span class="number">0</span>, <span class="keyword">null</span>);  </span><br><span class="line">  </span><br><span class="line">        ImageIO.write(buffImg, <span class="string">"JPEG"</span>, <span class="keyword">new</span> File(desPath));</span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String []args)</span> <span class="keyword">throws</span> IOException</span>&#123; </span><br><span class="line">		getFiles(<span class="string">"G:/蝴蝶识别/压缩/shoutu"</span>,<span class="string">"modified_100"</span>,<span class="number">100</span>);<span class="comment">//将图片压缩至100宽</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>按自定义宽高修改：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> srcPath 原图片路径 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> desPath  转换大小后图片路径 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> width   转换后图片宽度 </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> height  转换后图片高度 </span></span><br><span class="line"><span class="comment">    */</span>  </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">resizeImage</span><span class="params">(String srcPath, String desPath,  </span></span></span><br><span class="line"><span class="function"><span class="params">           <span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> <span class="keyword">throws</span> IOException </span>&#123;  </span><br><span class="line"> </span><br><span class="line">       File srcFile = <span class="keyword">new</span> File(srcPath);  </span><br><span class="line">       Image srcImg = ImageIO.read(srcFile);  </span><br><span class="line">       BufferedImage buffImg = <span class="keyword">null</span>;  </span><br><span class="line">       buffImg = <span class="keyword">new</span> BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);</span><br><span class="line">	<span class="comment">//使用TYPE_INT_RGB修改的图片会变色 </span></span><br><span class="line">       buffImg.getGraphics().drawImage(  </span><br><span class="line">               srcImg.getScaledInstance(width, height, Image.SCALE_SMOOTH), <span class="number">0</span>,  </span><br><span class="line">               <span class="number">0</span>, <span class="keyword">null</span>);  </span><br><span class="line"> </span><br><span class="line">       ImageIO.write(buffImg, <span class="string">"JPEG"</span>, <span class="keyword">new</span> File(desPath));  </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>批量修改</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> srcPath  源图片文件夹路径</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> desPath  修改大小后图片文件夹路径 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> scaleSize 图片的修改比例，目标宽度</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getFiles</span><span class="params">(String path,String modPath,<span class="keyword">int</span> scaleSize)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; files = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        File file = <span class="keyword">new</span> File(path);</span><br><span class="line">        File[] tempList = file.listFiles();</span><br><span class="line">		<span class="comment">//循环读取目录下图片</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tempList.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (tempList[i].isFile()) &#123; </span><br><span class="line">            	  System.out.println(<span class="string">"文件："</span> + tempList[i].getName()+<span class="string">"-"</span>+tempList[i].getAbsolutePath().replaceAll(<span class="string">"\\\\"</span>,<span class="string">"/"</span>));</span><br><span class="line">            	  String[] imagePath=tempList[i].getAbsolutePath().replaceAll(<span class="string">"\\\\"</span>,<span class="string">"/"</span>).split(<span class="string">"/"</span>);</span><br><span class="line">            	  String imageNumber=<span class="keyword">null</span>;  	  </span><br><span class="line">            ImageResizer.resizeImage(tempList[i].getAbsolutePath().replaceAll(<span class="string">"\\\\"</span>,<span class="string">"/"</span>),<span class="string">"目标文件路径"</span>,scaleSize);  </span><br><span class="line">                files.add(tempList[i].toString());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (tempList[i].isDirectory()) &#123;</span><br><span class="line"><span class="comment">//                  System.out.println("文件夹：" + tempList[i]);</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(path+<span class="string">"下文件数量："</span>+files.size());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>修改效果：</strong></p>
+<p>修改前：<br><img src="https://i.imgur.com/2dLwjuC.png" alt=""><br>修改后：<br><img src="https://i.imgur.com/9hJTGc9.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/19/Java——更改图片像素/" data-id="cjr32gdep0000fgttat507n1n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/19/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/19/Java——更改图片像素/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/19/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
